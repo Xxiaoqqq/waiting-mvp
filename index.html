@@ -260,7 +260,7 @@
       $('episode-title').textContent=episode.title;$('episode-subtitle').textContent=' · '+episode.subtitle;$('episode-cover').textContent=episode.cover;
       $('episode-official').href=episode.official;
       document.title='Waiting · '+episode.title;
-      $('prototype-note').textContent=bundled?'单文件测试版 · 页面数据已内置，播放真实音频仍需联网。':'本地 MVP · '+episodeList.length+' 集真实音频与第三方文稿；尚未逐字听校。';
+      $('prototype-note').textContent=bundled?'音频由原节目提供，播放需要联网。':'本地 MVP · '+episodeList.length+' 集真实音频与第三方文稿；尚未逐字听校。';
       savedPlayback=readPlayback(episode.id);
       renderChapter(true);audio.src=episode.audio;audio.load();loadTranscript();if(currentTab==='discover')renderEpisodeLibrary('discover-episode-list');
     }catch(error){box.replaceChildren();const message=document.createElement('p');message.className='loading';message.textContent='节目内容包载入失败，请刷新页面。';box.append(message);$('audio-state').textContent='内容载入失败'}}
