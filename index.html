@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#11151b">
+  <meta name="theme-color" content="#FFFFFA">
   <title>听见之后 · 播客里的想法，留到听完以后</title>
   <style>
     :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;color-scheme:dark;--bg:#192e28;--card:#284339;--mint:#d6b17d;--text:#f8f6ee;--muted:#a8b8ad;--paper:#f1eee6;--panel:#f8f6f0;--ink:#263d34;--ink-soft:#63776b;--green:#315d47;--line:#cbd6c9;--copper:#a36d3d}
@@ -53,6 +53,123 @@
     .progress::-webkit-slider-runnable-track{background:linear-gradient(to right,var(--mint) var(--pct),#63776b var(--pct))}
     .progress::-webkit-slider-thumb{background:var(--mint)}
     @media(max-width:430px){body{background:var(--bg)}}
+
+    /* 听见之后 · 视觉方向 02：按用户参考图的四个色值重排信息层级。 */
+    :root{color-scheme:light;--bg:#fffffa;--card:#f7f6e8;--mint:#cac426;--text:#222223;--muted:#62625e;--paper:#fffffa;--panel:#fffffa;--ink:#222223;--ink-soft:#62625e;--green:#cac426;--line:#dcdacc;--copper:#bcb4ff;--lavender:#bcb4ff;--lavender-pale:#eae7ff;--lavender-ink:#514a91;--gold-pale:#f4f1bd;--gold-ink:#605b00}
+    html,body{background:#fffffa;color:var(--ink)}
+    .phone{background:var(--paper);color:var(--ink);box-shadow:0 18px 50px #22222326;border:1px solid #dcdacc}
+    .topbar{height:55px;background:#fffffa;border-bottom:1px solid var(--line)}
+    .brand{font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;font-size:18px;letter-spacing:-.035em;color:var(--ink)}
+    .brand::before{width:8px;height:8px;margin-bottom:2px;background:#cac426}
+    .episode-picker{background:#ffffec;border:1px solid #c9c7b7;color:var(--ink);font-size:11px}
+    .now-playing-title,.episode-subtitle{color:var(--muted)}
+    .episode{padding:10px 18px 0;color:var(--ink)}
+    .cover{background:#bcb4ff;color:#222223;border-radius:8px}
+    .episode-title{font-size:12px;color:var(--ink)}
+    .episode-subtitle a{color:var(--lavender-ink)}
+    .chapter-head{padding:12px 18px 10px}
+    .chapter-link{color:var(--lavender-ink);font-size:11px}
+    .chapter-head h1{font-size:20px;line-height:1.32;letter-spacing:-.025em;color:var(--ink)}
+    .summary{margin:0 15px 15px;padding:10px 13px;background:#f7f6e8;border-left:3px solid #bcb4ff;border-radius:3px}
+    .summary-header{color:#56525e;font-size:10px;letter-spacing:.06em}
+    .summary-text{color:var(--ink);font-size:12px;line-height:1.6}
+    .summary-detail{color:#555551;font-size:11px;line-height:1.6}
+    .summary-toggle{color:var(--lavender-ink);font-size:11px;min-height:28px}
+    .transcript-head{padding:0 18px 8px;margin-bottom:4px;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink)}
+    .thought-trigger,.view-mode{border-color:#bbb9a6;color:var(--ink);background:#ffffec}
+    .thought-trigger:focus-visible,.view-mode:focus-visible,.chapter-jump:focus-visible{outline:2px solid var(--lavender-ink);outline-offset:2px}
+    .view-mode[aria-pressed="true"]{background:#bcb4ff;color:#222223}
+    .tap-hint,.follow-state,.intro-note{color:#666661}
+    .transcript{padding:0 15px 24px}
+    .chapter-divider{color:var(--lavender-ink);font-size:11px;margin-top:17px}
+    .chapter-divider.current{color:#222223}
+    .turn{margin:0;padding:10px 5px;border-radius:0;border-bottom:1px solid #e8e6d9;background:transparent}
+    .turn.active{margin:0 -5px;padding:10px;background:#eae7ff;border-bottom-color:transparent;border-radius:7px;box-shadow:inset 3px 0 #8b81e0}
+    .turn-meta{color:#686864;font-size:10px;margin-bottom:5px}
+    .turn-body,.transcript.compact .turn-body{color:#333332;font-size:14px;line-height:1.7}
+    .turn.active .turn-body{color:#222223;font-weight:600}
+    .term,.term.uncertain-term{color:var(--lavender-ink);border-bottom-color:#8b81e0}
+    .term.uncertain-term.labeled::after{color:var(--gold-ink)}
+    .turn.gap,.transcript.compact .turn.gap{background:#f4f1bd;border:1px dashed #989131;border-radius:7px}
+    .turn.gap .turn-body,.unclear{color:#5a570d}
+    .turn.review-required,.transcript.compact .turn.review-required{background:#f4f1bd;border:1px dashed #989131}
+    .turn.review-required .turn-meta{color:var(--gold-ink)}
+    .transcript.compact .turn{border-bottom-color:#e8e6d9}
+    .transcript.compact .turn.active{background:#eae7ff;box-shadow:inset 3px 0 #8b81e0}
+    .return-current{background:#cac426;border:1px solid #cac426;color:#222223;box-shadow:0 8px 22px #22222333}
+    .player{background:#222223;color:#ffffec}
+    .audio-state,.progress-labels{color:#dedcca}
+    .progress::-webkit-slider-runnable-track{background:linear-gradient(to right,#cac426 var(--pct),#686862 var(--pct))}
+    .progress::-webkit-slider-thumb{background:#bcb4ff}
+    .control{color:#ffffec}
+    .play{color:#bcb4ff}
+    .speed{border-color:#797973;color:#ffffec}
+    .bottom-nav{background:#fffffa;border-top:1px solid var(--line)}
+    .bottom-nav button{color:#666661}
+    .bottom-nav button[aria-current="page"]{background:#fffffa;color:#222223;box-shadow:inset 0 3px #cac426}
+    .bottom-nav button:focus-visible{outline:2px solid var(--lavender-ink)}
+    .tab-panel,.sheet,.term-sheet{background:#fffffa;color:var(--ink)}
+    .tab-panel{padding:24px 21px 28px}
+    .tab-panel h2{font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;font-size:24px;line-height:1.3;letter-spacing:-.035em;color:var(--ink)}
+    .tab-panel h3{font-size:15px;color:var(--ink)}
+    .tab-panel-note,.connection-note,.jd-question-note,.sheet-note{color:#595956;font-size:12px;line-height:1.65}
+    .tab-panel .discovery-card{padding:17px 0;border-top-color:var(--line)}
+    .tab-panel .discovery-card strong{font-size:15px;color:var(--ink)}
+    .discovery-meta,.discovery-status{color:#686864}
+    .discovery-reason{color:#555551;font-size:12px}
+    .discovery-card a,.jd-case-link,.thought-open,.term-sheet .term-source{color:var(--lavender-ink)}
+    .library-item,.chapter-item{border-top-color:var(--line);color:var(--ink)}
+    .library-item strong,.chapter-item strong{font-size:13px}
+    .library-item.current,.chapter-item.current{background:#eae7ff;color:#222223}
+    .library-title,.library-position,.chapter-item small,.concept-entry span{color:#5c5c59}
+    .library-track{background:#e1dfce}.library-track span{background:#cac426}
+    .use-switch button,.question-nav button{background:#ffffec;border-color:#d8d6c5;color:#555551}
+    .use-switch button[aria-pressed="true"],.question-nav button[aria-pressed="true"]{background:#bcb4ff;border-color:#bcb4ff;color:#222223}
+    .apply-card,.connection-card,.jd-result,.jd-question{background:#fffff5;border-color:var(--line)}
+    .apply-card{padding:17px}
+    .apply-label,.connection-content strong,.career-field,.jd-section-title{color:var(--lavender-ink)}
+    .apply-scene,.apply-followup,.jd-route{background:#f7f6e8;color:var(--ink);border-left:3px solid #bcb4ff}
+    .apply-option,.apply-followup button,.jd-source,.connection-source button{background:#ffffec;border-color:#dcdacc;color:var(--ink)}
+    .apply-option.selected{background:#bcb4ff;border-color:#8b81e0;color:#222223}
+    .apply-feedback{border-top-color:var(--line)}
+    .apply-caveat,.apply-followup-note{color:#5a5a56}
+    .apply-action,.jd-button{background:#ffffec;border-color:#b4b297;color:var(--ink)}
+    .apply-action.primary,.jd-button.primary,.thought-save{background:#cac426;border-color:#cac426;color:#222223}
+    .connection-card{border-radius:10px;padding:0 15px;margin-bottom:12px}
+    .connection-card summary{font-size:15px;color:var(--ink);padding:16px 0}
+    .connection-card summary small{color:#666661;font-size:11px}
+    .connection-content,.connection-source{border-top-color:var(--line)}
+    .connection-content p,.connection-source p{font-size:12px;color:#4e4e4c}
+    .connection-source h4{color:var(--ink);font-size:13px}
+    .connection-source blockquote{background:#eae7ff;border-left-color:#8b81e0;color:#222223}
+    .connection-source button,.jd-source{background:#cac426;border-color:#cac426;color:#222223}
+    .jd-input,.apply-response,.thought-input{background:#fffff5;border-color:#bcbab0;color:var(--ink)}
+    .jd-status,.jd-match-note,.jd-result p,.jd-question-body p,.jd-source small{color:#565653}
+    .jd-result{padding:16px;margin:14px 0}
+    .jd-result h3,.jd-question summary{font-size:15px;color:var(--ink)}
+    .jd-result .jd-coverage{background:#eae7ff;color:#514a91}
+    .jd-unit,.jd-question-body .jd-question-answer{background:#eae7ff;border-color:#d4cdfa;color:var(--ink)}
+    .jd-unit strong{color:#514a91}
+    .jd-result .jd-gap,.jd-question-body .jd-question-gap{background:#f4f1bd;color:#454200}
+    .jd-question-body{border-top-color:var(--line)}
+    .practice-return{background:#f4f1bd;border-color:#d4cc65;color:#454200}
+    .term-sheet,.sheet{box-shadow:0 -10px 30px #22222330}
+    .sheet h2,.term-sheet h2{color:var(--ink)}
+    .close{color:var(--ink)}.close:hover,.close:active{background:#eae7ff}
+    .term-sheet p,.term-type,.concept-related-note{color:#5b5b58}
+    .concept-related,.concept-entry{border-top-color:var(--line)}
+    .concept-entry,.concept-entry strong{color:var(--lavender-ink)}
+    .thought-context{background:#eae7ff;color:var(--ink)}
+    .thought-context strong{color:var(--lavender-ink)}
+    .thought-card,.apply-saved{background:#fffff5;border:1px solid var(--line);color:var(--ink)}
+    .thought-card strong,.apply-saved summary{color:var(--ink)}
+    .thought-card p,.thought-empty,.thought-card .thought-quote{color:#555551}
+    .thought-kind,.thought-kind.apply-kind{background:#cac426;color:#222223}
+    .thought-card-actions button,.voice-button{background:#ffffec;border-color:#d3d0b4;color:var(--ink)}
+    .voice-button[aria-pressed="true"]{background:#bcb4ff;color:#222223}
+    .prototype-note,.prototype-note a{color:#5a5a56}
+    :where(button,a,summary,input,textarea):focus-visible{outline:2px solid #514a91;outline-offset:2px}
+    @media(max-width:430px){body{background:#fffffa}.phone{border:0;box-shadow:none}}
   </style>
 </head>
 <body>
@@ -66,7 +183,7 @@
     <div class="tap-hint reader-view"><span id="tap-hint">正在载入段落时间…</span><button class="view-mode" id="view-mode" type="button" aria-pressed="false" title="比较同一文稿的两种阅读密度；段落跳转时间不变">紧凑阅读</button></div>
     <div class="transcript reader-view" id="transcript" role="region" aria-label="文字稿，可手动滚动回看" tabindex="0"><p class="loading">正在载入公开文字稿…</p></div>
     <button class="return-current reader-view" id="return-current" hidden>↧ 返回当前段落</button>
-    <section class="tab-panel" id="discover-panel" aria-labelledby="discover-heading" hidden><h2 id="discover-heading">发现</h2><p class="tab-panel-note">沿着正在听的主题，看看还值得听什么。候选节目先在原站试听。</p><section class="discovery" aria-labelledby="discovery-title"><h3 id="discovery-title">值得看看</h3><div id="discovery-list"></div><p class="discovery-status" id="discovery-status"></p></section><h3>已收录的节目</h3><div id="discover-episode-list"></div></section>
+    <section class="tab-panel" id="discover-panel" aria-labelledby="discover-heading" hidden><h2 id="discover-heading">发现</h2><p class="tab-panel-note">先从已收录的节目进入收听；想探索新内容时，再看下面的候选节目。</p><h3>已收录的节目</h3><div id="discover-episode-list"></div><section class="discovery" aria-labelledby="discovery-title"><h3 id="discovery-title">值得看看</h3><div id="discovery-list"></div><p class="discovery-status" id="discovery-status"></p></section></section>
     <section class="tab-panel" id="thought-tab-panel" aria-labelledby="thought-tab-heading" hidden><h2 id="thought-tab-heading">把听到的用起来</h2><p class="tab-panel-note">练习应用、联系不同节目，也试着把听过的内容用于求职准备。按需打开，不要求每次都做完。</p><div class="use-switch" aria-label="用起来的内容"><button id="use-apply" type="button" aria-pressed="true">情境练习</button><button id="use-connections" type="button" aria-pressed="false">内容联系</button><button id="use-career" type="button" aria-pressed="false">求职准备</button></div><div id="use-apply-view"><p class="tab-panel-note">挑一道有真实取舍的题。先选，再看节目观点、判断边界和原音频；可以跳过，也不计分。</p><div id="apply-body"><p class="apply-loading">正在载入这期的情境题…</p></div></div><section id="use-connections-view" aria-label="跨节目内容联系" hidden><p class="connection-note">从共同问题出发看不同节目的语境与差别。已核对的联系会保留；新节目有实质关联时再补入。跨期打开原段后请点播放。</p><div id="connection-body"><p class="apply-loading">正在载入内容联系…</p></div></section><section id="use-career-view" aria-label="求职准备" hidden><p class="connection-note">贴入岗位 JD，逐条找已收录节目里可回听的参考。节目观点可以帮助形成判断，不能证明你做过该工作。JD 只保存在当前浏览器。</p><label class="career-field" for="jd-input">岗位描述 JD</label><textarea class="jd-input" id="jd-input" maxlength="12000" placeholder="粘贴岗位职责与任职要求；每条尽量单独一行。"></textarea><div class="jd-actions"><button class="jd-button primary" id="jd-search" type="button">从播客找参考</button><button class="jd-button" id="jd-example" type="button">试用美团岗位拆解</button></div><a class="jd-case-link" href="https://zhaopin.meituan.com/web/position/detail?highlightType=campus&amp;jobUnionId=4650800437" target="_blank" rel="noopener noreferrer">查看美团岗位原文 ↗</a><p class="jd-status" id="jd-status" role="status">覆盖当前收录的节目；匹配结果请回听核对。</p><div id="jd-results"></div></section><details class="apply-saved"><summary>已记下的想法</summary><div id="thought-tab-items"></div></details></section>
     <footer class="player"><div class="audio-state" id="audio-state" aria-live="polite">音频加载中…</div><div class="progress-labels"><span id="clock">00:00</span><span id="duration">00:00</span></div><input class="progress" id="progress" type="range" min="0" max="1" value="0" aria-label="真实音频播放进度"><div class="controls"><button class="control" id="rewind" aria-label="后退 15 秒">↶ 15</button><button class="control play" id="play" aria-label="播放真实音频">▶</button><button class="control" id="forward" aria-label="前进 15 秒">15 ↷</button><button class="control speed" id="speed" aria-label="播放速度 1 倍">1×</button></div></footer>
     <nav class="bottom-nav" aria-label="听见之后页面"><button id="tab-discover" type="button" aria-controls="discover-panel">发现</button><button id="tab-listen" type="button" aria-controls="transcript" aria-current="page">收听</button><button id="tab-thoughts" type="button" aria-controls="thought-tab-panel">用起来</button></nav>
