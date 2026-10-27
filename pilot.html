@@ -235,7 +235,13 @@
     const aiPracticeReady=aiReady&&aiConfig?.features?.practice===true;
     const aiJDReady=aiReady&&aiConfig?.features?.jd===true;
     $('jd-ai-search').hidden=!aiJDReady;
-    if(aiJDReady)document.querySelector('#use-career-view > .connection-note').textContent='普通检索只在当前浏览器使用已审定的观点和规则。点击「AI 分析」才会把你粘贴的 JD 发送到私有 Agent；需要内测码，结果是方法参考，不能证明个人经历。';
+    let jdInviteInput=null;
+    if(aiJDReady){
+      const label=document.createElement('label');label.className='career-field';label.htmlFor='jd-pilot-code';label.textContent='内测试用码（仅保存在当前标签）';
+      jdInviteInput=document.createElement('input');jdInviteInput.id='jd-pilot-code';jdInviteInput.className='jd-input';jdInviteInput.type='password';jdInviteInput.autocomplete='off';jdInviteInput.spellcheck=false;jdInviteInput.style.minHeight='43px';jdInviteInput.placeholder='先输入试用码，再点 AI 分析';
+      document.querySelector('#use-career-view .jd-actions').before(label,jdInviteInput);
+      document.querySelector('#use-career-view > .connection-note').textContent='普通检索只在当前浏览器使用已审定的观点和规则。点击「AI 分析」才会把你粘贴的 JD 发送到私有 Agent；需要内测码，结果是方法参考，不能证明个人经历。';
+    }
     async function aiCall(path,data){
       if(!aiReady)throw Error('AI 服务尚未开放');
       if(aiPreview){
@@ -247,14 +253,14 @@
       let inviteCode='';
       try{inviteCode=sessionStorage.getItem('waiting-ai-invite-code')||''}catch(error){}
       if(!inviteCode){
-        inviteCode=(window.prompt('请输入内测试用码。试用码只保存在当前浏览器标签中。')||'').trim();
-        if(!inviteCode)throw Error('需要试用码才能使用 AI 功能');
+        inviteCode=jdInviteInput?.value.trim()||'';
+        if(!inviteCode){jdInviteInput?.focus();throw Error('请先输入内测试用码')}
         try{sessionStorage.setItem('waiting-ai-invite-code',inviteCode)}catch(error){}
       }
       const headers={'Content-Type':'application/json'};
       headers.Authorization='Bearer '+inviteCode;
       const response=await fetch(aiBase+path,{method:'POST',headers,body:JSON.stringify(data),signal:AbortSignal.timeout(25000)});
-      if(response.status===401){try{sessionStorage.removeItem('waiting-ai-invite-code')}catch(error){}throw Error('试用码无效或已过期，请重新输入')}
+      if(response.status===401){try{sessionStorage.removeItem('waiting-ai-invite-code')}catch(error){}if(jdInviteInput)jdInviteInput.value='';throw Error('试用码无效或已过期，请重新输入')}
       if(!response.ok)throw Error(response.status===429?'试用次数已用完，请先用普通检索':response.status===503?'AI 服务尚未开放':'AI 请求暂时失败（'+response.status+'）');
       return response.json();
     }
