@@ -813,7 +813,7 @@
       try{
         const response=await readData('waiting-jd-demo.json');if(!response.ok)throw Error('案例数据未找到');
         const demo=await response.json();if(demo.kind!=='saved_real_agent_run'||!Array.isArray(demo.cards))throw Error('案例格式错误');
-        $('jd-input').value=demo.jd;host.replaceChildren();
+        host.replaceChildren();
         const banner=applyElement('div','','jd-demo-banner'),source=document.createElement('a');
         banner.append(applyElement('strong',demo.label),applyElement('p',demo.company+' · '+demo.role+'｜'+demo.inputNote),applyElement('p','这次保存的请求调用模型 '+demo.modelCalls+' 次，响应报告 '+demo.reportedTokens+' Token。'+demo.boundary));
         source.href=demo.sourceUrl;source.target='_blank';source.rel='noopener noreferrer';source.textContent='查看岗位来源 ↗';banner.append(source);host.append(banner);
