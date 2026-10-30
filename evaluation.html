@@ -1,0 +1,161 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>五岗位对照 · 听见之后</title>
+<style>
+:root{--paper:#ffffec;--surface:#fffff5;--ink:#222223;--muted:#5c5c59;--gold:#cac426;--lavender:#bcb4ff;--line:#dcdacc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","Noto Sans CJK SC",sans-serif;line-height:1.55}
+.shell{max-width:930px;margin:auto;padding:25px clamp(18px,4vw,48px) 80px}a{color:#514a91;text-underline-offset:3px}.top{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:2px solid var(--ink);padding-bottom:13px}.brand{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:20px;font-weight:800;letter-spacing:.04em}.back{font-size:13px}
+.eyebrow{margin:36px 0 7px;color:#514a91;font-size:12px;font-weight:800;letter-spacing:.08em}h1{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:clamp(30px,5vw,50px);line-height:1.22;margin:0;letter-spacing:-.03em}.lead{max-width:720px;font-size:16px;margin:17px 0 26px}.disclaimer{border-left:5px solid var(--gold);background:#fffde0;padding:14px 18px;font-size:13px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0}.metric{min-height:134px;background:var(--surface);border:1px solid var(--line);padding:16px}.metric b{display:block;font-size:34px;line-height:1.1}.metric strong{display:block;font-size:13px;margin-top:8px}.metric small{display:block;color:var(--muted);margin-top:4px}.metric:nth-child(2){border-top:5px solid var(--gold)}.metric:nth-child(3){border-top:5px solid var(--lavender)}
+h2{font-size:20px;margin:42px 0 7px}.section-note{color:var(--muted);font-size:13px;margin:0 0 17px}.job{border-top:1px solid var(--line)}.job:last-of-type{border-bottom:1px solid var(--line)}.job summary{cursor:pointer;list-style:none;display:grid;grid-template-columns:135px 1fr auto;gap:15px;align-items:center;padding:18px 2px}.job summary::-webkit-details-marker{display:none}.job summary span{font-size:12px;font-weight:800;color:#514a91}.job summary strong{font-size:15px}.job summary small{font-size:12px;color:var(--muted)}.job summary:focus-visible{outline:2px solid #514a91;outline-offset:4px}.job[open] summary{border-bottom:1px solid var(--line)}.job-body{padding:14px 0 22px}.source{font-size:12px;color:var(--muted)}.line-card{margin:12px 0;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px}.line-index{font-size:11px;font-weight:800;color:#514a91}.line-card h3{margin:5px 0 14px;font-size:15px}dl{margin:0;display:grid;gap:5px}dl div{display:grid;grid-template-columns:190px 1fr;gap:8px}dt{font-size:12px;color:var(--muted)}dd{margin:0;font-size:12px}.tag{display:inline-block;background:#eae7ff;padding:2px 7px;margin:0 5px 3px 0;border-radius:5px}.empty{color:#74746d}.boundary{font-size:12px;margin:9px 0 0}.flag{font-size:12px;font-weight:750;color:#735327;margin:5px 0 0}.method{background:#222223;color:#ffffec;padding:21px;margin-top:40px}.method h2{margin:0 0 10px;color:#ffffec}.method p{font-size:13px;max-width:760px}.method a{color:#bcb4ff}
+@media(max-width:650px){.metrics{grid-template-columns:1fr}.metric{min-height:100px}.job summary{grid-template-columns:1fr;gap:4px}.job summary small{margin-top:3px}dl div{grid-template-columns:1fr;gap:2px;margin:4px 0}.top{align-items:flex-start}}
+</style></head><body><main class="shell"><header class="top"><div class="brand">听见之后</div><a class="back" href="./pilot.html?ai=trial&amp;demo=jd">返回 JD 试跑案例 ↗</a></header>
+<p class="eyebrow">JD AGENT / 离线对照</p><h1>五种岗位，哪些联系该留下？</h1><p class="lead">把同一批岗位职责交给普通规则和 Agent 的候选检索，逐句对照人工标注。点开任一岗位，可以看到哪些参考有用、哪些只是词语相似。</p>
+<div class="disclaimer"><strong>请先看证据层级：</strong>这是零模型调用的检索预检，不是五份 JD 的实时 Agent 评测。第三列只到“候选”，还需模型排除误连。岗位句是根据招聘页改写的片段，部分样本曾参与开发，并非独立盲测。</div>
+<section class="metrics" aria-label="评测摘要"><div class="metric"><b>5 岗 · 20 句</b><strong>人工标注 8 条合理联系</strong><small>五种不同岗位方向</small></div><div class="metric"><b>4 / 8</b><strong>普通规则找对的联系</strong><small>另有 4 条误连、4 条漏连</small></div><div class="metric"><b>8 / 8</b><strong>候选检索覆盖的联系</strong><small>另有 2 条候选待排除；不是模型成绩</small></div></section>
+<h2>逐岗看判断边界</h2><p class="section-note">“人工标注”是评测答案；“规则”是现有公开页实际结果；“候选”是私有 Agent 给模型看的范围。留空也是结果。</p><details class="job"><summary><span>AI 搜索产品</span><strong>百度产品经理实习生 J106008</strong><small>4 条职责 · 2 条进入候选检索</small></summary>
+          <div class="job-body"><p class="source"><a href="https://talent.baidu.com/jobs/detail/INTERN/2a30a008-be18-46bc-b6d5-9dedac0bfa25" target="_blank" rel="noopener noreferrer">查看招聘页历史来源 ↗</a> · 下方职责为评测改写片段</p><article class="line-card">
+              <span class="line-index">01 / 原句</span><h3>分析搜索对话和用户反馈，识别持续追踪与提醒的使用场景</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="tag">需求判断</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="tag">需求判断</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="tag">迭代反馈</span><span class="tag">需求判断</span></dd></div></dl>
+              <p class="boundary">边界：只支持从用户任务场景理解需求的原则</p>
+              <p class="flag">候选中有 1 条需要判断层排除</p>
+              </article><article class="line-card">
+              <span class="line-index">02 / 原句</span><h3>设计任务创建与结果交付的流程和原型</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有观点不能代替具体流程与原型设计</p>
+
+              </article><article class="line-card">
+              <span class="line-index">03 / 原句</span><h3>为意图识别和生成结果设计贴近真实任务的评测样本</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="tag">AI 效果评测</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="tag">AI 效果评测</span></dd></div></dl>
+              <p class="boundary">边界：只支持真实场景评测原则，不证明样本设计实操</p>
+              <p class="flag">规则漏掉 1 条</p>
+              </article><article class="line-card">
+              <span class="line-index">04 / 原句</span><h3>跟踪任务成功率和准时送达指标并输出分析</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有知识没有指标计算与分析方法</p>
+
+              </article></div></details><details class="job"><summary><span>AI 增长运营</span><strong>百度 AI 产品运营实习生 J95151</strong><small>4 条职责 · 2 条进入候选检索</small></summary>
+          <div class="job-body"><p class="source"><a href="https://talent.baidu.com/jobs/detail/INTERN/1f357c44-cd06-4b7b-ad09-12ef27583842" target="_blank" rel="noopener noreferrer">查看招聘页历史来源 ↗</a> · 下方职责为评测改写片段</p><article class="line-card">
+              <span class="line-index">01 / 原句</span><h3>调研渠道用户对 AI 功能的真实需求与使用场景</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="tag">需求判断</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="tag">需求判断</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="tag">需求判断</span></dd></div></dl>
+              <p class="boundary">边界：只支持理解用户与场景的产品判断</p>
+
+              </article><article class="line-card">
+              <span class="line-index">02 / 原句</span><h3>分析渠道数据并决定增长活动投放</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="tag">业务验证</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有知识没有渠道指标或投放决策方法</p>
+              <p class="flag">规则误连 1 条</p>
+              </article><article class="line-card">
+              <span class="line-index">03 / 原句</span><h3>策划线上线下活动提高用户留存</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有知识没有活动策划或留存运营方法</p>
+
+              </article><article class="line-card">
+              <span class="line-index">04 / 原句</span><h3>收集用户反馈，整理需求并推动产品持续优化</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="tag">迭代反馈</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="tag">需求判断</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="tag">迭代反馈</span></dd></div></dl>
+              <p class="boundary">边界：只支持反馈进入迭代的方法参考</p>
+              <p class="flag">规则误连 1 条；规则漏掉 1 条</p>
+              </article></div></details><details class="job"><summary><span>智能体评估技术</span><strong>百度智能体算法工程师 J100977</strong><small>4 条职责 · 1 条进入候选检索</small></summary>
+          <div class="job-body"><p class="source"><a href="https://talent.baidu.com/jobs/detail/INTERN/7c18970a-63d0-495e-80bd-90996743cf6e" target="_blank" rel="noopener noreferrer">查看招聘页历史来源 ↗</a> · 下方职责为评测改写片段</p><article class="line-card">
+              <span class="line-index">01 / 原句</span><h3>为文库与网盘的 AIGC 能力建立真实业务评价基准</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="tag">AI 效果评测</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="tag">AI 效果评测</span></dd></div></dl>
+              <p class="boundary">边界：只支持真实业务评价基准的原则，不能证明中台建设</p>
+              <p class="flag">规则漏掉 1 条</p>
+              </article><article class="line-card">
+              <span class="line-index">02 / 原句</span><h3>整理多模型评测指标和数据并撰写分析报告</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="tag">AI 效果评测</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有知识没有指标统计与数据分析方法</p>
+              <p class="flag">规则误连 1 条</p>
+              </article><article class="line-card">
+              <span class="line-index">03 / 原句</span><h3>利用 Agent Skills 和 Tool Use 搭建自动化测评智能体</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有知识没有搭建智能体的技术依据</p>
+
+              </article><article class="line-card">
+              <span class="line-index">04 / 原句</span><h3>开发评测脚本和数据处理工具</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有知识没有脚本开发依据</p>
+
+              </article></div></details><details class="job"><summary><span>AI 训练设计</span><strong>美团 AI 设计实习生（模型训练、评测等工作）</strong><small>4 条职责 · 2 条进入候选检索</small></summary>
+          <div class="job-body"><p class="source"><a href="https://zhaopin.meituan.com/web/position/detail?highlightType=campus&amp;jobUnionId=4132050002" target="_blank" rel="noopener noreferrer">查看招聘页历史来源 ↗</a> · 下方职责为评测改写片段</p><article class="line-card">
+              <span class="line-index">01 / 原句</span><h3>制定 AI 训练数据的标注规范和可视化方案</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有播客观点不提供数据标注与视觉设计方法</p>
+
+              </article><article class="line-card">
+              <span class="line-index">02 / 原句</span><h3>协助模型或工具效果评测</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="tag">AI 效果评测</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="tag">AI 效果评测</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="tag">AI 效果评测</span></dd></div></dl>
+              <p class="boundary">边界：只能提供以真实使用检验效果的原则，不能证明评测实操</p>
+
+              </article><article class="line-card">
+              <span class="line-index">03 / 原句</span><h3>根据模型效果评测结果调优模型数据集</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="tag">AI 效果评测</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="tag">AI 效果评测</span></dd></div></dl>
+              <p class="boundary">边界：现有观点不提供数据集调优方法</p>
+              <p class="flag">规则误连 1 条；候选中有 1 条需要判断层排除</p>
+              </article><article class="line-card">
+              <span class="line-index">04 / 原句</span><h3>整理设计素材并维护团队设计资产</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有观点不支持设计资产管理</p>
+
+              </article></div></details><details class="job"><summary><span>行业模型交付工程</span><strong>腾讯大模型算法交付工程师（行业模型方向）</strong><small>4 条职责 · 2 条进入候选检索</small></summary>
+          <div class="job-body"><p class="source"><a href="https://careers.tencent.com/jobdesc.html?postId=2111019353557352448" target="_blank" rel="noopener noreferrer">查看招聘页历史来源 ↗</a> · 下方职责为评测改写片段</p><article class="line-card">
+              <span class="line-index">01 / 原句</span><h3>到客户现场识别真实业务场景中的问题</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="tag">需求判断</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="tag">需求判断</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="tag">需求判断</span></dd></div></dl>
+              <p class="boundary">边界：只能提供先理解用户和场景的判断原则，不能证明交付经验</p>
+
+              </article><article class="line-card">
+              <span class="line-index">02 / 原句</span><h3>为行业客户建设真实业务评价基准</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="tag">AI 效果评测</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="tag">AI 效果评测</span></dd></div></dl>
+              <p class="boundary">边界：只能提供贴近真实任务建立评价基准的原则，不能证明体系建设</p>
+              <p class="flag">规则漏掉 1 条</p>
+              </article><article class="line-card">
+              <span class="line-index">03 / 原句</span><h3>搭建知识库、工作流与工具调用并交付智能体</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有播客观点不能证明知识库、工作流与智能体交付能力</p>
+
+              </article><article class="line-card">
+              <span class="line-index">04 / 原句</span><h3>开展模型微调与强化学习以改善行业任务表现</h3>
+              <dl><div><dt>人工标注 · 合理参考</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>公开规则 · 实际给出</dt><dd><span class="empty">留空</span></dd></div>
+              <div><dt>Agent · 检索候选，尚未由模型判断</dt><dd><span class="empty">留空</span></dd></div></dl>
+              <p class="boundary">边界：现有观点不提供微调或强化学习的实操依据</p>
+
+              </article></div></details>
+<section class="method"><h2>为什么还没说“任意 JD 都能分析”？</h2><p>旧版五岗真实试跑仅 2/5 请求完成。改进后的三份百度岗位改写片段真实试跑为 3/3 请求完成、5/5 预标联系、0 误连；最近修复的个人条件误连尚未真实模型复测。这页的 8/8 只是“模型判断完全正确时”的上限。下一步必须用完整 JD 和跨公司难例验证，记录误连、漏连、耗时和实际成本。</p><p><a href="./pilot.html?ai=trial&amp;demo=jd">回到可回听的真实试跑留档 ↗</a></p></section>
+</main></body></html>
