@@ -1106,7 +1106,11 @@
     audio.addEventListener('error',()=>{$('audio-state').textContent='音频加载失败，请打开节目原页'});
     window.addEventListener('pagehide',()=>rememberPlayback());
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('thought-editor').hidden)closeThoughtEditor();else if(!$('thought-list').hidden)closeThoughtList();else if(!$('concept').hidden)hideConcept();else if(!$('episode-library').hidden)hideEpisodeLibrary();else if(!$('timeline').hidden)hideTimeline()}});
-    applyViewMode();updateThoughtCount();setupVoice();if(aiPreview)showTab('knowledge');loadEpisode();
+    applyViewMode();updateThoughtCount();setupVoice();
+    if(new URLSearchParams(location.search).get('demo')==='jd'){
+      showTab('thoughts');showUseView('career');jdShowSavedDemo();
+    }else if(aiPreview)showTab('knowledge');
+    loadEpisode();
   </script>
 </body>
 </html>
