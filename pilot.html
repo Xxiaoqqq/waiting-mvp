@@ -250,18 +250,17 @@
         if(!unit)throw Error('未找到这条已核对观点');
         return {status:'candidate',answer:'本地模拟：先看这条观点的节目语境和适用边界，再回听原段核对。这不是模型生成的回答。',evidence:[unit],note:'本地交互模拟 · 未连接真实模型，也不消耗试用额度。'};
       }
-      let inviteCode='';
-      try{inviteCode=sessionStorage.getItem('waiting-ai-invite-code')||''}catch(error){}
-      if(!inviteCode){
-        inviteCode=jdInviteInput?.value.trim()||'';
-        if(!inviteCode){jdInviteInput?.focus();throw Error('请先输入内测试用码')}
-        try{sessionStorage.setItem('waiting-ai-invite-code',inviteCode)}catch(error){}
-      }
+      const enteredCode=jdInviteInput?.value.trim()||'';
+      let inviteCode=enteredCode;
+      if(!inviteCode)try{inviteCode=sessionStorage.getItem('waiting-ai-invite-code')||''}catch(error){}
+      if(!inviteCode){jdInviteInput?.focus();throw Error('请先输入内测试用码')}
+      if(enteredCode)try{sessionStorage.setItem('waiting-ai-invite-code',enteredCode)}catch(error){}
       const headers={'Content-Type':'application/json'};
       headers.Authorization='Bearer '+inviteCode;
       const response=await fetch(aiBase+path,{method:'POST',headers,body:JSON.stringify(data),signal:AbortSignal.timeout(25000)});
       if(response.status===401){try{sessionStorage.removeItem('waiting-ai-invite-code')}catch(error){}if(jdInviteInput)jdInviteInput.value='';throw Error('试用码无效或已过期，请重新输入')}
-      if(!response.ok)throw Error(response.status===429?'试用次数已用完，请先用普通检索':response.status===503?'AI 服务尚未开放':'AI 请求暂时失败（'+response.status+'）');
+      if(response.status===429){try{sessionStorage.removeItem('waiting-ai-invite-code')}catch(error){}if(jdInviteInput)jdInviteInput.value='';throw Error('试用次数已用完，请先用普通检索')}
+      if(!response.ok)throw Error(response.status===503?'AI 服务尚未开放':'AI 请求暂时失败（'+response.status+'）');
       return response.json();
     }
     const bundled=window.WAITING_BUNDLE||null;
