@@ -200,7 +200,7 @@
     <button class="return-current reader-view" id="return-current" hidden>↧ 返回当前段落</button>
     <section class="tab-panel" id="discover-panel" aria-labelledby="discover-heading" hidden><h2 id="discover-heading">发现</h2><p class="tab-panel-note">先从已收录的节目进入收听；想探索新内容时，再看下面的候选节目。</p><h3>已收录的节目</h3><div id="discover-episode-list"></div><section class="discovery" aria-labelledby="discovery-title"><h3 id="discovery-title">值得看看</h3><div id="discovery-list"></div><p class="discovery-status" id="discovery-status"></p></section></section>
     <section class="tab-panel" id="knowledge-panel" aria-labelledby="knowledge-heading" hidden><h2 id="knowledge-heading">知识库</h2><p class="tab-panel-note">从问题进入，串起不同节目中的判断；概念索引汇集已做过的术语解释。观点与概念分开展示，原段可回听。</p><div class="knowledge-overview" aria-label="知识库规模"><span><strong id="knowledge-episode-count">0</strong>期已收录节目</span><span><strong id="knowledge-question-count">0</strong>个问题</span><span><strong id="knowledge-unit-count">0</strong>条观点</span></div><label class="career-field" for="knowledge-search">搜索问题、概念、观点或文稿</label><input class="knowledge-search" id="knowledge-search" type="search" placeholder="例如：Agent、用户需求、AI 评测" autocomplete="off"><p class="knowledge-search-status" id="knowledge-search-status" role="status" hidden></p><div class="knowledge-section-title" id="knowledge-question-title"><h3>从问题出发</h3><span>判断 · 差异 · 原音</span></div><div id="knowledge-question-body"><p class="apply-loading">正在载入知识库…</p></div><details class="knowledge-concepts" id="knowledge-concept-section"><summary>概念索引 <span><span id="knowledge-concept-count">0</span> 个概念 · 按需查看</span></summary><p class="tab-panel-note">解释来自各期已整理的术语卡；同词保留各期语境。未人工核对的定位仅作回听线索。</p><div class="knowledge-concept-list" id="knowledge-concept-body"></div></details><section id="knowledge-passage-section" aria-label="节目原文" hidden><div class="knowledge-section-title"><h3>节目原文</h3><span>文字匹配 · 回听核对</span></div><div id="knowledge-passage-body"></div></section></section>
-    <section class="tab-panel" id="thought-tab-panel" aria-labelledby="thought-tab-heading" hidden><h2 id="thought-tab-heading">用起来</h2><p class="tab-panel-note">把听到的观点放进新情境，也用它准备求职。按需打开，不要求每次都做完。</p><div class="use-switch" aria-label="用起来的方式"><button id="use-apply" type="button" aria-pressed="true">情境练习</button><button id="use-career" type="button" aria-pressed="false">求职准备</button></div><div id="use-apply-view"><p class="tab-panel-note">挑一道有真实取舍的题。先选，再看节目观点、判断边界和原音频；可以跳过，也不计分。</p><div id="apply-body"><p class="apply-loading">正在载入这期的情境题…</p></div></div><section id="use-career-view" aria-label="求职准备" hidden><p class="connection-note">贴入岗位 JD，逐条找已收录节目里可回听的参考。节目观点可以帮助形成判断，不能证明你做过该工作。当前检索使用已核对的节目观点和本地匹配规则，JD 只保存在当前浏览器。</p><label class="career-field" for="jd-input">岗位描述 JD</label><textarea class="jd-input" id="jd-input" maxlength="12000" placeholder="粘贴岗位职责与任职要求；每条尽量单独一行。"></textarea><div class="jd-actions"><button class="jd-button primary" id="jd-search" type="button">从播客找参考</button><button class="jd-button" id="jd-ai-search" type="button" hidden>AI 深入拆解</button><button class="jd-button" id="jd-demo" type="button">看真实 AI 试跑案例</button><button class="jd-button" id="jd-example" type="button">试用美团岗位拆解</button></div><a class="jd-case-link" href="https://zhaopin.meituan.com/web/position/detail?highlightType=campus&amp;jobUnionId=4650800437" target="_blank" rel="noopener noreferrer">查看美团岗位原文 ↗</a><p class="jd-status" id="jd-status" role="status">覆盖当前收录的节目；匹配结果请回听核对。</p><div id="jd-results"></div></section><details class="apply-saved"><summary>已记下的想法</summary><div id="thought-tab-items"></div></details></section>
+    <section class="tab-panel" id="thought-tab-panel" aria-labelledby="thought-tab-heading" hidden><h2 id="thought-tab-heading">用起来</h2><p class="tab-panel-note">把听到的观点放进新情境，也用它准备求职。按需打开，不要求每次都做完。</p><div class="use-switch" aria-label="用起来的方式"><button id="use-apply" type="button" aria-pressed="true">情境练习</button><button id="use-career" type="button" aria-pressed="false">求职准备</button></div><div id="use-apply-view"><p class="tab-panel-note">挑一道有真实取舍的题。先选，再看节目观点、判断边界和原音频；可以跳过，也不计分。</p><div id="apply-body"><p class="apply-loading">正在载入这期的情境题…</p></div></div><section id="use-career-view" aria-label="求职准备" hidden><p class="connection-note">贴入岗位 JD，逐条找已收录节目里可回听的参考。节目观点可以帮助形成判断，不能证明你做过该工作。当前检索使用已核对的节目观点和本地匹配规则，JD 只保存在当前浏览器。</p><label class="career-field" for="jd-input">岗位描述 JD</label><textarea class="jd-input" id="jd-input" maxlength="12000" placeholder="直接粘贴岗位职责和任职要求，无需手动拆成多行。"></textarea><div class="jd-actions"><button class="jd-button primary" id="jd-search" type="button">分析这份 JD（本地规则）</button><button class="jd-button" id="jd-ai-search" type="button" hidden>AI 分析这份 JD（内测码）</button><button class="jd-button" id="jd-demo" type="button">看真实 AI 试跑案例</button><button class="jd-button" id="jd-example" type="button">试用美团岗位拆解</button></div><a class="jd-case-link" href="https://zhaopin.meituan.com/web/position/detail?highlightType=campus&amp;jobUnionId=4650800437" target="_blank" rel="noopener noreferrer">查看美团岗位原文 ↗</a><a class="jd-case-link" href="./evaluation.html">看五岗位对照与失败边界 ↗</a><p class="jd-status" id="jd-status" role="status">粘贴 JD 后点「分析这份 JD」。便携版只跑本地规则，不调用模型；不能用它盲测 JD Agent。</p><div id="jd-results"></div></section><details class="apply-saved"><summary>已记下的想法</summary><div id="thought-tab-items"></div></details></section>
     <footer class="player"><div class="audio-state" id="audio-state" aria-live="polite">音频加载中…</div><div class="progress-labels"><span id="clock">00:00</span><span id="duration">00:00</span></div><input class="progress" id="progress" type="range" min="0" max="1" value="0" aria-label="真实音频播放进度"><div class="controls"><button class="control" id="rewind" aria-label="后退 15 秒">↶ 15</button><button class="control play" id="play" aria-label="播放真实音频">▶</button><button class="control" id="forward" aria-label="前进 15 秒">15 ↷</button><button class="control speed" id="speed" aria-label="播放速度 1 倍">1×</button></div></footer>
     <nav class="bottom-nav" aria-label="听见之后页面"><button id="tab-discover" type="button" aria-controls="discover-panel">发现</button><button id="tab-listen" type="button" aria-controls="transcript" aria-current="page">收听</button><button id="tab-knowledge" type="button" aria-controls="knowledge-panel">知识库</button><button id="tab-thoughts" type="button" aria-controls="thought-tab-panel">用起来</button></nav>
     <div class="scrim" id="timeline" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="timeline-title"><div class="sheet-head"><h2 id="timeline-title">Timeline · 章节</h2><button class="close" id="timeline-close" aria-label="关闭 Timeline">×</button></div><p class="sheet-note">时间点来自节目官方 Show Notes。跳转后文字稿按本机生成的段落时间定位；自动识别可能有误差。</p><div id="chapter-list"></div></div></div>
@@ -228,13 +228,25 @@
     const aiMode=new URLSearchParams(location.search).get('ai');
     const aiPilot=false; // Public release does not open the invite-only AI pilot.
     const aiPreview=aiMode==='preview'&&location.protocol==='file:';
-    const aiConfig=window.WAITING_AI_CONFIG||(aiPilot?{baseUrl:'https://cloud-1-d8gaulhxi903326e8-1500924923.ap-shanghai.app.tcloudbase.com/waiting-ai',features:{followup:true}}:aiPreview?{baseUrl:'preview:',features:{followup:true}}:null);
+    const aiConfig=window.WAITING_AI_CONFIG||(aiPilot?{baseUrl:'https://cloud-1-d8gaulhxi903326e8-1500924923.ap-shanghai.app.tcloudbase.com/waiting-ai',features:{followup:true,jd:true}}:aiPreview?{baseUrl:'preview:',features:{followup:true}}:null);
     const aiBase=typeof aiConfig?.baseUrl==='string'?aiConfig.baseUrl.replace(/\/$/,''):'';
     const aiReady=Boolean(aiPreview||aiBase&&(/^https:\/\//.test(aiBase)||(/^http:\/\/127\.0\.0\.1:\d+$/.test(aiBase)&&['file:','http:'].includes(location.protocol))));
     const aiFollowupReady=aiReady&&aiConfig?.features?.followup===true;
     const aiPracticeReady=aiReady&&aiConfig?.features?.practice===true;
     const aiJDReady=aiReady&&aiConfig?.features?.jd===true;
     $('jd-ai-search').hidden=!aiJDReady;
+    const jdLooksLikeLink=value=>/^https?:\/\/\S+$/i.test(value.trim());
+    let jdInviteInput=null;
+    if(aiJDReady){
+      $('jd-ai-search').classList.add('primary');$('jd-search').classList.remove('primary');
+      $('jd-search').textContent='普通检索（不调用模型）';
+      $('jd-status').textContent='粘贴 JD 后输入有效内测码，点「AI 分析这份 JD」。普通检索不调用模型。';
+      document.querySelector('#use-career-view .jd-actions').prepend($('jd-ai-search'));
+      const label=document.createElement('label');label.className='career-field';label.htmlFor='jd-pilot-code';label.textContent='内测试用码（仅保存在当前标签）';
+      jdInviteInput=document.createElement('input');jdInviteInput.id='jd-pilot-code';jdInviteInput.className='jd-input';jdInviteInput.type='password';jdInviteInput.autocomplete='off';jdInviteInput.spellcheck=false;jdInviteInput.style.minHeight='43px';jdInviteInput.placeholder='先输入试用码，再点 AI 分析';
+      document.querySelector('#use-career-view .jd-actions').before(label,jdInviteInput);
+      document.querySelector('#use-career-view > .connection-note').textContent='普通检索只在当前浏览器使用已审定的观点和规则。点击「AI 分析」才会把你粘贴的 JD 发送到私有 Agent；需要内测码，结果是方法参考，不能证明个人经历。';
+    }
     async function aiCall(path,data){
       if(!aiReady)throw Error('AI 服务尚未开放');
       if(aiPreview){
@@ -243,18 +255,17 @@
         if(!unit)throw Error('未找到这条已核对观点');
         return {status:'candidate',answer:'本地模拟：先看这条观点的节目语境和适用边界，再回听原段核对。这不是模型生成的回答。',evidence:[unit],note:'本地交互模拟 · 未连接真实模型，也不消耗试用额度。'};
       }
-      let inviteCode='';
-      try{inviteCode=sessionStorage.getItem('waiting-ai-invite-code')||''}catch(error){}
-      if(!inviteCode){
-        inviteCode=(window.prompt('请输入内测试用码。试用码只保存在当前浏览器标签中。')||'').trim();
-        if(!inviteCode)throw Error('需要试用码才能使用 AI 功能');
-        try{sessionStorage.setItem('waiting-ai-invite-code',inviteCode)}catch(error){}
-      }
+      const enteredCode=jdInviteInput?.value.trim()||'';
+      let inviteCode=enteredCode;
+      if(!inviteCode)try{inviteCode=sessionStorage.getItem('waiting-ai-invite-code')||''}catch(error){}
+      if(!inviteCode){jdInviteInput?.focus();throw Error('请先输入内测试用码')}
+      if(enteredCode)try{sessionStorage.setItem('waiting-ai-invite-code',enteredCode)}catch(error){}
       const headers={'Content-Type':'application/json'};
       headers.Authorization='Bearer '+inviteCode;
       const response=await fetch(aiBase+path,{method:'POST',headers,body:JSON.stringify(data),signal:AbortSignal.timeout(25000)});
-      if(response.status===401){try{sessionStorage.removeItem('waiting-ai-invite-code')}catch(error){}throw Error('试用码无效或已过期，请重新输入')}
-      if(!response.ok)throw Error(response.status===429?'试用次数已用完，请先用普通检索':response.status===503?'AI 服务尚未开放':'AI 请求暂时失败（'+response.status+'）');
+      if(response.status===401){try{sessionStorage.removeItem('waiting-ai-invite-code')}catch(error){}if(jdInviteInput)jdInviteInput.value='';throw Error('试用码无效或已过期，请重新输入')}
+      if(response.status===429){try{sessionStorage.removeItem('waiting-ai-invite-code')}catch(error){}if(jdInviteInput)jdInviteInput.value='';throw Error('试用次数已用完，请先用普通检索')}
+      if(!response.ok)throw Error(response.status===503?'AI 服务尚未开放':'AI 请求暂时失败（'+response.status+'）');
       return response.json();
     }
     const bundled=window.WAITING_BUNDLE||null;
@@ -596,13 +607,28 @@
       return /本科|硕士|博士|学历|每周.{0,8}(?:天|工作日)|实习.{0,8}(?:月|周)|毕业时间|到岗/.test(line)
         && !/产品|需求|设计|数据|AI|Agent|大模型|Skill|协作|评测|研发|用户|客户/i.test(line);
     }
-    function jdRequirements(value){
-      const lines=value.split(/[\n；;。]+/).flatMap(line=>line.length>150?line.split(/，(?=负责|熟悉|具备|能够|理解|掌握|有)/):[line]);
+    function jdParsedRequirements(value){
       const seen=new Set();
-      return lines.map(line=>line.replace(/^\s*(?:[-•●]|\d+[.、）)])\s*/,'').replace(/^(?:岗位职责|任职要求|职位要求|工作内容)\s*[:：]?\s*/,'').replace(/^(?:大学)?本科(?:及以上)?学历[，,、]?\s*/,'').trim()).filter(line=>{
-        if(line.length<7||seen.has(line)||jdIsEligibility(line))return false;seen.add(line);return true;
-      }).slice(0,12);
+      const rows=[];
+      let section='work',firstContent=true;
+      const heading=/^(工作职责|岗位职责|职位描述|岗位描述|职责描述|工作内容|职责要求|任职要求|岗位要求|任职资格|职位要求|招聘要求|加分项|优先条件|投递方式|申请方式|联系方式)(?:[：:]\s*(.*))?$/;
+      for(const sourceLine of value.split(/\r?\n/)){
+        const bullets=sourceLine.replace(/(?:^|[ \t]+)(?:[-•●▪]|\d+[.、）)])[ \t]*(?=[\p{Script=Han}])/gu,'\n').split('\n');
+        for(const raw of bullets){
+          let line=raw.trim();if(!line)continue;
+          const header=line.match(heading);
+          if(header){section=/^(?:投递方式|申请方式|联系方式)$/.test(header[1])?'application':/^(?:加分项|优先条件)$/.test(header[1])?'bonus':/^(?:工作职责|岗位职责|职位描述|岗位描述|职责描述|工作内容)$/.test(header[1])?'work':'qualification';line=header[2]?.trim()||'';if(!line||section==='application')continue}
+          if(firstContent&&line.length<90&&/(?:实习生|产品经理|工程师|算法专家|运营专员|设计师)(?:[（(].*)?$/.test(line)&&!/(?:负责|参与|协助|具备|熟悉|能够|推动|设计|分析)/.test(line)){firstContent=false;continue}
+          firstContent=false;
+          if(section==='application'||/^(?:我们正在寻找|我们希望寻找|我们期待|加入我们|欢迎你|请(?:直接|在|将|把|附上)|投递方式|申请方式|简历(?:请|投递))/.test(line))continue;
+          line=line.replace(/^(?:大学)?本科(?:及以上)?学历[，,、]?\s*/,'').trim();
+          if(line.length<7||seen.has(line)||jdIsEligibility(line))continue;
+          seen.add(line);rows.push({line,section});
+        }
+      }
+      return rows.slice(0,12);
     }
+    function jdRequirements(value){return jdParsedRequirements(value).map(row=>row.line)}
     function jdIsPersonal(line){return /(?:\d+\s*年|本科|硕士|博士|学历|精通|熟练(?:使用|运用|掌握)|独立(?:负责|完成)|(?:具备|拥有|有).{0,12}经验|曾经|实际做过)/.test(line)}
     function jdAtomicParts(line){return line.split(/[，,]/).flatMap(part=>part.split(/并(?=提出|分析|设计|开发|撰写|编写|搭建|评测|验收|测试|优化)|(?:和|及|(?<!参)与)(?=功能设计|产品设计|评测|测试验收)/)).map(part=>part.trim().replace(/^[；;。\s]+|[；;。\s]+$/g,'')).filter(Boolean)}
     // Conservative mappings from work in a JD to editorially reviewed podcast claims.
@@ -759,12 +785,16 @@
         host.append(card);
       }
     }
-    function jdRenderResults(requirements,knowledge,jdText){
-      const host=$('jd-results');host.replaceChildren();
+    function jdRenderResults(requirements,knowledge,jdText,host=$('jd-results'),includeQuestions=true,groupedRows=null){
+      host.replaceChildren();
       host.append(applyElement('p','回答线索卡按岗位原句作保守拆解，只引用人工核对过的知识单元。应用思路供准备回答，不能证明你有对应经历；无可靠依据的要求只保留原句。','jd-match-note'));
-      const questions=[],context=jdJobContext(jdText);
+      const questions=[],context=jdJobContext(jdText),sectionNames={work:'岗位职责',qualification:'任职条件',bonus:'加分项'};
+      let activeSection='';
       for(const [index,requirement] of requirements.entries()){
+        const section=groupedRows?.[index]?.section||'work';
+        if(groupedRows&&section!==activeSection){host.append(applyElement('h3',sectionNames[section]||'岗位要求','jd-section-title'));activeSection=section}
         const card=applyElement('article','','jd-result');card.append(applyElement('h3',String(index+1).padStart(2,'0')+' · '+requirement));
+        if(section!=='work'){card.append(applyElement('p','这项需要本人真实经历或条件证明；节目不能代为证明。','jd-gap'));host.append(card);continue}
         const matches=jdTaskMatches(requirement,knowledge,context);
         if(!matches.length){host.append(card);continue}
         card.append(applyElement('span','有观点参考，缺个人实践','jd-coverage'));
@@ -777,7 +807,7 @@
         card.append(applyElement('p','本人证据／待补：准备自己实际做过的任务、取舍和结果；播客观点只能帮助组织判断。','jd-gap'));
         host.append(card);
       }
-      if(questions.length){
+      if(questions.length&&includeQuestions){
         host.append(applyElement('h3','从这份岗位出发 · 可能被问到','jd-section-title'));
         host.append(applyElement('p','以下是根据岗位要求推测的练习题，并非企业官方真题。','jd-question-note'));
         for(const [index,row] of questions.slice(0,4).entries()){
@@ -793,13 +823,21 @@
     }
     function jdRenderAI(result){
       const host=$('jd-results');host.replaceChildren();
-      host.append(applyElement('p','AI 辅助拆解后的回答线索：JD 原句和播客出处由程序核对；应用思路不是节目原话，也不能证明本人经历。没有依据的要求只保留原句。','jd-match-note'));
+      const modelCalls=result.usage?.modelCalls;
+      host.append(applyElement('p','私有 Agent 试跑 · '+(modelCalls===0?'本次没有找到可判断的候选，未调用模型。':modelCalls===1?'本次使用 1 次模型判断。':'调用次数以服务端记录为准。')+'JD 原句和播客出处由程序核对；节目观点不能证明本人经历。','jd-match-note'));
       const rows=Array.isArray(result.cards)?result.cards:result.tasks;
       if(!Array.isArray(rows)||!rows.length){host.append(applyElement('p','这份 JD 暂未识别出可用的工作任务。可试试普通检索。','jd-gap'));return}
+      const sectionNames={work:'岗位职责',qualification:'任职条件',bonus:'加分项'};
+      let activeSection='';
       for(const [index,row] of rows.entries()){
+        const section=sectionNames[row.section]?row.section:'work';
+        if(section!==activeSection){host.append(applyElement('h3',sectionNames[section],'jd-section-title'));activeSection=section}
         const card=applyElement('article','','jd-result');
         card.append(applyElement('h3',String(index+1).padStart(2,'0')+' · '+row.excerpt));
-        if(!['candidate','reference'].includes(row.status)){host.append(card);continue}
+        if(!['candidate','reference'].includes(row.status)){
+          const reason=row.status==='not_evaluated'?'本次未评估：句子过长或超过本轮候选处理上限；不能据此判断知识库是否有相关内容。':row.status==='personal'?'这项需要本人真实经历或条件，播客不能代为证明。':'暂未找到足够直接的播客依据，请勿当作能力证明。';
+          card.append(applyElement('p',reason,'jd-gap'));host.append(card);continue;
+        }
         card.append(applyElement('span','有节目观点可借鉴，缺本人实践','jd-coverage'));
         if(row.links){for(const link of row.links)jdAppendAnswerLink(card,link.part,{topic:link.topic,claim:link.claim,context:link.context,useFor:link.application,limit:link.limit,sources:link.sources})}
         else for(const unit of row.evidence||[])for(const part of row.matchedParts||[])jdAppendAnswerLink(card,part,unit);
@@ -810,12 +848,19 @@
     }
     async function jdShowSavedDemo(){
       const status=$('jd-status'),host=$('jd-results');status.textContent='正在载入已保存的真实试跑结果…';
+      try{sessionStorage.removeItem('waiting-career-ai-jd-v2');sessionStorage.removeItem('waiting-career-ai-result-v2')}catch(error){}
       try{
         const response=await readData('waiting-jd-demo.json');if(!response.ok)throw Error('案例数据未找到');
         const demo=await response.json();if(demo.kind!=='saved_real_agent_run'||!Array.isArray(demo.cards))throw Error('案例格式错误');
+        const previousJD=$('jd-input').value.trim();
+        if(previousJD&&previousJD!==demo.jd)try{sessionStorage.setItem('waiting-career-draft-before-demo-v1',previousJD)}catch(error){}
+        $('jd-input').value=demo.jd;
+        const knowledge=await jdReviewedKnowledge(),requirements=jdRequirements(demo.jd),context=jdJobContext(demo.jd);
+        const agentRefs=demo.cards.filter(row=>row.status==='reference'&&row.links?.length).length;
+        const ruleRefs=requirements.filter(row=>jdTaskMatches(row,knowledge,context).length).length;
         host.replaceChildren();
         const banner=applyElement('div','','jd-demo-banner'),source=document.createElement('a');
-        banner.append(applyElement('strong',demo.label),applyElement('p',demo.company+' · '+demo.role+'｜'+demo.inputNote),applyElement('p','这次保存的请求调用模型 '+demo.modelCalls+' 次，响应报告 '+demo.reportedTokens+' Token。'+demo.boundary));
+        banner.append(applyElement('strong',demo.label),applyElement('p',demo.company+' · '+demo.role+'｜'+demo.inputNote),applyElement('p','上方已填入这次真实试跑使用的同一份 JD。Agent 找到 '+agentRefs+'/'+demo.cards.length+' 条方法参考；普通规则找到 '+ruleRefs+'/'+requirements.length+' 条。数量只供对照，联系是否有用仍需看原音和适用边界。'),applyElement('p','这次保存的请求调用模型 '+demo.modelCalls+' 次，响应报告 '+demo.reportedTokens+' Token。'+demo.boundary+' 当前点击案例不会重新调用模型，也不代表最近修正已通过真实复测。'));
         source.href=demo.sourceUrl;source.target='_blank';source.rel='noopener noreferrer';source.textContent='查看岗位来源 ↗';banner.append(source);host.append(banner);
         for(const [index,row] of demo.cards.entries()){
           const card=applyElement('article','','jd-result');card.append(applyElement('h3',String(index+1).padStart(2,'0')+' · '+row.excerpt));
@@ -840,23 +885,45 @@
           }
           host.append(card);
         }
+        const comparison=document.createElement('details'),comparisonTitle=document.createElement('summary'),comparisonBody=document.createElement('div');
+        comparison.className='jd-question';comparisonTitle.textContent='同一份 JD：看普通规则会给出什么（零模型调用）';
+        comparisonBody.className='jd-question-body';
+        jdRenderResults(requirements,knowledge,demo.jd,comparisonBody,false);
+        comparisonBody.prepend(applyElement('p','下面使用相同的四句输入和相同的审定知识库，只换成本地规则判断。比较每条依据是否贴合岗位动作；不能仅凭命中条数判定 Agent 更好。','jd-match-note'));
+        try{comparison.open=sessionStorage.getItem('waiting-career-demo-compare-open-v1')==='1'}catch(error){}
+        comparison.addEventListener('toggle',()=>{try{sessionStorage.setItem('waiting-career-demo-compare-open-v1',comparison.open?'1':'0')}catch(error){}});
+        comparison.append(comparisonTitle,comparisonBody);host.append(comparison);
+        let savedDraft='';try{savedDraft=sessionStorage.getItem('waiting-career-draft-before-demo-v1')||''}catch(error){}
+        if(savedDraft){
+          const restore=applyElement('button','恢复刚才粘贴的 JD','jd-button');restore.type='button';
+          restore.addEventListener('click',()=>{$('jd-input').value=savedDraft;host.replaceChildren();status.textContent='已恢复你的 JD。可选择普通检索；有有效内测码时才可运行实时 Agent。';$('jd-input').focus();try{sessionStorage.removeItem('waiting-career-draft-before-demo-v1');sessionStorage.removeItem('waiting-career-view-v1')}catch(error){}});
+          host.append(restore);
+        }
         try{sessionStorage.setItem('waiting-career-view-v1','saved-demo')}catch(error){}
-        status.textContent='已展示 '+demo.cards.length+' 条岗位任务：这是已保存的真实 AI 试跑，点原音可回听；你粘贴新 JD 后仍使用普通规则检索。';
+        status.textContent='已填入并展示 '+demo.cards.length+' 条案例 JD：先看 Agent 卡片，再展开同输入的普通规则结果；点原音回听后可返回。此案例不会发起新模型请求。';
       }catch(error){status.textContent='试跑案例暂时无法载入；仍可贴 JD 做普通检索。';console.warn('JD 试跑案例载入失败',error)}
     }
     async function jdAISearch(){
       const value=$('jd-input').value.trim(),status=$('jd-status'),button=$('jd-ai-search');
+      if(jdLooksLikeLink(value)){status.textContent='这里需要岗位职责正文，不能直接分析岗位网址。请打开链接复制职位描述，再粘贴到上方。';$('jd-input').focus();return}
       if(value.length<20){status.textContent='请先贴入至少 20 字的岗位 JD。';$('jd-input').focus();return}
-      button.disabled=true;status.textContent='正在按岗位原句拆任务，并对照已核对的播客观点…';
-      try{const result=await aiCall('/api/jd',{jd:value});jdRenderAI(result);status.textContent='已拆出 '+result.tasks.length+' 项；这是 AI 辅助候选，请核对联系与原音。';try{localStorage.setItem('waiting-career-jd-v1',value)}catch(error){}}
-      catch(error){status.textContent=error.message+'；可点“从播客找参考”使用普通检索。'}
+      button.disabled=true;status.textContent='正在按岗位原句拆任务，并判断播客观点是否可作方法参考…';
+      try{
+        const result=await aiCall('/api/jd-agent',{jd:value});
+        if(result.status!=='complete'||!Array.isArray(result.tasks))throw Error('此次 AI 判断未完成，结果没有作为知识库缺口展示');
+        jdRenderAI(result);
+        status.textContent='已处理 '+result.tasks.length+' 条岗位要求；其中可能含未评估项，请核对状态与原音。';
+        try{localStorage.setItem('waiting-career-jd-v1',value);sessionStorage.setItem('waiting-career-view-v1','agent-result');sessionStorage.setItem('waiting-career-ai-jd-v2',value);sessionStorage.setItem('waiting-career-ai-result-v2',JSON.stringify(result))}catch(error){}
+      }
+      catch(error){status.textContent=error.message+'；需要时可点「分析这份 JD（本地规则）」查看零模型候选。'}
       finally{button.disabled=false}
     }
     async function jdSearch(){
-      try{sessionStorage.removeItem('waiting-career-view-v1')}catch(error){}
+      try{sessionStorage.removeItem('waiting-career-view-v1');sessionStorage.removeItem('waiting-career-ai-jd-v2');sessionStorage.removeItem('waiting-career-ai-result-v2')}catch(error){}
       const value=$('jd-input').value.trim(),status=$('jd-status');
       if(!value){status.textContent='先贴入一段岗位 JD，或点“试用美团岗位拆解”。';$('jd-input').focus();return}
-      const requirements=jdRequirements(value);
+      if(jdLooksLikeLink(value)){status.textContent='这里需要岗位职责正文，不能直接分析岗位网址。请打开链接复制职位描述，再粘贴到上方。';$('jd-input').focus();return}
+      const groupedRows=jdParsedRequirements(value),requirements=groupedRows.map(row=>row.line);
       if(!requirements.length){status.textContent='请贴入包含具体岗位要求的句子。';return}
       status.textContent='正在对照知识库中已核对的观点…';
       try{
@@ -866,8 +933,8 @@
           jdRenderCase(matchedCase,knowledge);
           status.textContent='已按真实岗位拆成 '+matchedCase.requirements.length+' 项；观点与音频经过人工核对，个人经历仍需本人提供。岗位更新于 '+matchedCase.sourceUpdated+'；投递状态请查看官网。';
         }else{
-          jdRenderResults(requirements,knowledge,value);
-          status.textContent='已保守拆解 '+requirements.length+' 条要求，只用 '+knowledge.units.length+' 个审定观点寻找参考；未覆盖的要求显示缺口。规则可能漏掉换种说法的岗位要求，请回听核对。'+(value.split(/[\n；;。]+/).length>12?' 本次最多显示前 12 条。':'');
+          jdRenderResults(requirements,knowledge,value,$('jd-results'),true,groupedRows);
+          status.textContent='已保守拆解 '+requirements.length+' 条要求；工作职责对照 '+knowledge.units.length+' 个审定观点，任职条件需本人证明。规则可能漏掉换种说法的职责，请回听核对。'+(groupedRows.length===12?' 本次最多显示前 12 条。':'');
         }
         try{localStorage.setItem('waiting-career-jd-v1',value)}catch(error){}
       }catch(error){status.textContent='检索暂时失败，请刷新页面重试。';console.warn('JD 检索失败',error)}
@@ -1034,14 +1101,18 @@
     $('jd-search').addEventListener('click',jdSearch);
     $('jd-ai-search').addEventListener('click',jdAISearch);
     $('jd-demo').addEventListener('click',jdShowSavedDemo);
-    $('jd-input').addEventListener('input',()=>{try{sessionStorage.removeItem('waiting-career-view-v1')}catch(error){}});
+    $('jd-input').addEventListener('input',()=>{
+      $('jd-results').replaceChildren();
+      $('jd-status').textContent=jdLooksLikeLink($('jd-input').value)?'这是岗位网址。请打开它并复制岗位职责正文；当前输入框不能直接抓取网页。':aiJDReady?'JD 已输入。填入有效内测码后点「AI 分析这份 JD」；普通检索不调用模型。':'JD 已输入。点「分析这份 JD（本地规则）」查看候选；便携版不能运行真实 JD Agent。';
+      try{sessionStorage.removeItem('waiting-career-view-v1');sessionStorage.removeItem('waiting-career-ai-jd-v2');sessionStorage.removeItem('waiting-career-ai-result-v2')}catch(error){}
+    });
     $('jd-example').addEventListener('click',async()=>{
       $('jd-status').textContent='正在载入美团岗位样例…';
       try{$('jd-input').value=jdCaseText((await jdCases())[0]);await jdSearch()}
       catch(error){$('jd-status').textContent='岗位样例暂时无法载入，请稍后重试。';console.warn('岗位样例载入失败',error)}
     });
     try{$('jd-input').value=localStorage.getItem('waiting-career-jd-v1')||''}catch(error){}
-    $('return-practice').addEventListener('click',()=>{const target=practiceReturn;if(!target)return;try{sessionStorage.removeItem('waiting-source-return-v1')}catch(error){}if(target.tab==='knowledge'){$('knowledge-search').value=target.knowledge?.query||'';showTab('knowledge');for(const id of target.knowledge?.openIds||[]){const card=[...document.querySelectorAll('#knowledge-question-body .knowledge-card')].find(item=>item.dataset.questionId===id);if(card)card.open=true}$('knowledge-concept-section').open=!!target.knowledge?.conceptSectionOpen;for(const id of target.knowledge?.conceptIds||[]){const card=[...document.querySelectorAll('#knowledge-concept-body .knowledge-concept-card')].find(item=>item.dataset.conceptId===id);if(card)card.open=true}requestAnimationFrame(()=>$('knowledge-panel').scrollTop=target.knowledge?.scrollTop||target.scrollTop);$('knowledge-search').focus()}else{showUseView(target.view);showTab('thoughts');if(target.view==='career'&&!$('jd-results').children.length){let saved=false;try{saved=sessionStorage.getItem('waiting-career-view-v1')==='saved-demo'}catch(error){}if(saved)jdShowSavedDemo();else if($('jd-input').value.trim())jdSearch()}requestAnimationFrame(()=>$('thought-tab-panel').scrollTop=target.scrollTop);$('use-'+target.view).focus()}});
+    $('return-practice').addEventListener('click',()=>{const target=practiceReturn;if(!target)return;try{sessionStorage.removeItem('waiting-source-return-v1')}catch(error){}if(target.tab==='knowledge'){$('knowledge-search').value=target.knowledge?.query||'';showTab('knowledge');for(const id of target.knowledge?.openIds||[]){const card=[...document.querySelectorAll('#knowledge-question-body .knowledge-card')].find(item=>item.dataset.questionId===id);if(card)card.open=true}$('knowledge-concept-section').open=!!target.knowledge?.conceptSectionOpen;for(const id of target.knowledge?.conceptIds||[]){const card=[...document.querySelectorAll('#knowledge-concept-body .knowledge-concept-card')].find(item=>item.dataset.conceptId===id);if(card)card.open=true}requestAnimationFrame(()=>$('knowledge-panel').scrollTop=target.knowledge?.scrollTop||target.scrollTop);$('knowledge-search').focus()}else{showUseView(target.view);showTab('thoughts');if(target.view==='career'&&!$('jd-results').children.length){let mode='',previous=null,sameJD=false;try{mode=sessionStorage.getItem('waiting-career-view-v1')||'';if(mode==='agent-result'){previous=JSON.parse(sessionStorage.getItem('waiting-career-ai-result-v2')||'null');sameJD=sessionStorage.getItem('waiting-career-ai-jd-v2')===$('jd-input').value.trim()}}catch(error){}if(mode==='saved-demo')jdShowSavedDemo();else if(mode==='agent-result'&&sameJD&&previous?.status==='complete'&&Array.isArray(previous.tasks)){jdRenderAI(previous);$('jd-status').textContent='已返回刚才的私有 Agent 结果。'}else if($('jd-input').value.trim())jdSearch()}requestAnimationFrame(()=>$('thought-tab-panel').scrollTop=target.scrollTop);$('use-'+target.view).focus()}});
     $('return-current').addEventListener('click',()=>{state.following=true;updateFollow();if(state.aligned){if(state.currentReviewTurn)followTurn(state.currentReviewTurn,true);else if(state.activeTurn<0)box.scrollTo({top:0,behavior:'auto'});else followActiveTurn(true)}else followChapter(true)});for(const event of ['wheel','touchmove'])box.addEventListener(event,()=>{state.following=false;updateFollow()},{passive:true});box.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End'].includes(e.key)){state.following=false;updateFollow()}});
     $('play').addEventListener('click',async()=>{if(audio.paused){try{await audio.play()}catch(error){$('audio-state').textContent='音频未能播放，请再点一次或打开节目原页'}}else audio.pause()});$('rewind').addEventListener('click',()=>{audio.currentTime=Math.max(0,audio.currentTime-15)});$('forward').addEventListener('click',()=>{audio.currentTime=Math.min(audio.duration||episode.duration,audio.currentTime+15)});$('speed').addEventListener('click',()=>{const speeds=[1,1.5,2],next=speeds[(speeds.indexOf(audio.playbackRate)+1)%speeds.length];audio.playbackRate=next;$('speed').textContent=next+'×';$('speed').setAttribute('aria-label','播放速度 '+next+' 倍');rememberPlayback()});$('progress').addEventListener('input',e=>{audio.currentTime=Number(e.target.value);state.following=true;updateFollow();renderChapter(true);rememberPlayback()});
     audio.addEventListener('loadedmetadata',()=>{
@@ -1068,7 +1139,24 @@
     audio.addEventListener('error',()=>{$('audio-state').textContent='音频加载失败，请打开节目原页'});
     window.addEventListener('pagehide',()=>rememberPlayback());
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('thought-editor').hidden)closeThoughtEditor();else if(!$('thought-list').hidden)closeThoughtList();else if(!$('concept').hidden)hideConcept();else if(!$('episode-library').hidden)hideEpisodeLibrary();else if(!$('timeline').hidden)hideTimeline()}});
-    applyViewMode();updateThoughtCount();setupVoice();if(aiPreview)showTab('knowledge');loadEpisode();
+    applyViewMode();updateThoughtCount();setupVoice();
+    const initialParams=new URLSearchParams(location.search),initialJDDemo=initialParams.get('demo')==='jd';
+    let initialSourceReturn=false;
+    try{const back=JSON.parse(sessionStorage.getItem('waiting-source-return-v1')||'null');initialSourceReturn=!!back&&back.episodeId===initialParams.get('episode')&&Date.now()-back.createdAt<600000}catch(error){}
+    if(initialJDDemo&&!initialSourceReturn){showTab('thoughts');showUseView('career')}
+    else if(aiPreview)showTab('knowledge');
+    loadEpisode().then(()=>{
+      if(!initialJDDemo||!episodeList.length)return;
+      let previous=null,savedJD='';
+      try{if(sessionStorage.getItem('waiting-career-view-v1')==='agent-result'){
+        previous=JSON.parse(sessionStorage.getItem('waiting-career-ai-result-v2')||'null');
+        savedJD=sessionStorage.getItem('waiting-career-ai-jd-v2')||'';
+      }}catch(error){}
+      if(savedJD&&previous?.status==='complete'&&Array.isArray(previous.tasks)){
+        $('jd-input').value=savedJD;jdRenderAI(previous);
+        $('jd-status').textContent='已保留刚才的私有 Agent 结果；回听后可返回，且不会再次调用模型。';
+      }else jdShowSavedDemo();
+    });
   </script>
 </body>
 </html>
