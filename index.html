@@ -821,6 +821,63 @@
         }
       }
     }
+    function jdAppendReview(host,rows,kind,jdText,usage={}){
+      if(!Array.isArray(rows)||!rows.length)return;
+      let hash=2166136261;
+      for(const char of jdText)hash=Math.imul(hash^char.charCodeAt(0),16777619);
+      const storageKey='waiting-jd-review-v1-'+kind+'-'+(hash>>>0).toString(16);
+      const allowed=new Set(['accepted','wrong_link','missing_link','wrong_group','unsure']);
+      let saved={};
+      try{saved=JSON.parse(sessionStorage.getItem(storageKey)||'{}')}catch(error){}
+      if(!saved||typeof saved!=='object')saved={};
+      const ratings=Array.isArray(saved.ratings)?rows.map((_,index)=>allowed.has(saved.ratings[index])?saved.ratings[index]:''):rows.map(()=>'');
+      const review=document.createElement('details');review.className='jd-question';
+      const title=document.createElement('summary');title.textContent='可选 · 帮我们核对这份结果';
+      const body=applyElement('div','','jd-question-body');
+      body.append(applyElement('p','只标记你实际核过的条目；没标记的不算正确。反馈留在当前标签，点击下载后才会生成文件，不会自动上传。'));
+      const controls=[];
+      const noteLabel=document.createElement('label');noteLabel.className='career-field';noteLabel.textContent='哪一处让你困惑？（可选）';
+      const note=document.createElement('textarea');note.className='apply-response';note.maxLength=500;note.placeholder='例如：第 3 条的节目观点与岗位动作不相关';note.value=typeof saved.note==='string'?saved.note.slice(0,500):'';noteLabel.append(note);
+      const status=applyElement('p','','jd-match-note');status.setAttribute('role','status');
+      const download=applyElement('button','下载反馈记录','jd-button');download.type='button';
+      function persist(){
+        try{sessionStorage.setItem(storageKey,JSON.stringify({ratings,note:note.value.slice(0,500)}))}catch(error){}
+        const count=ratings.filter(Boolean).length;
+        status.textContent='已标记 '+count+'/'+rows.length+' 条；未标记的条目不会计入通过。';
+        download.disabled=count===0&&!note.value.trim();
+        controls.forEach((buttons,index)=>buttons.forEach(([value,button])=>button.setAttribute('aria-pressed',String(ratings[index]===value))));
+      }
+      rows.forEach((row,index)=>{
+        const item=applyElement('div','','jd-result');
+        item.append(applyElement('h3',String(index+1).padStart(2,'0')+' · '+row.excerpt));
+        const summary=row.status==='reference'||row.status==='candidate'?'结果：有节目参考':row.status==='personal'?'结果：本人条件':row.status==='not_evaluated'?'结果：未评估':'结果：知识缺口';
+        item.append(applyElement('p',summary));
+        const actions=applyElement('div','','jd-actions'),buttons=[];
+        const verdicts=row.status==='reference'||row.status==='candidate'
+          ?[['accepted','参考有用'],['wrong_link','关联不当'],['missing_link','漏了另一条'],['wrong_group','分类不对'],['unsure','不确定']]
+          :row.status==='not_evaluated'
+          ?[['accepted','说明清楚'],['wrong_group','分类不对'],['unsure','不确定']]
+          :[['accepted','留空合理'],['missing_link','漏了参考'],['wrong_group','分类不对'],['unsure','不确定']];
+        verdicts.forEach(([value,label])=>{
+          const button=applyElement('button',label,'jd-button');button.type='button';
+          button.addEventListener('click',()=>{ratings[index]=ratings[index]===value?'':value;persist()});
+          actions.append(button);buttons.push([value,button]);
+        });
+        controls.push(buttons);item.append(actions);body.append(item);
+      });
+      note.addEventListener('input',persist);
+      download.addEventListener('click',()=>{
+        const report={schemaVersion:1,kind,reviewedAt:new Date().toISOString(),modelCalls:usage?.modelCalls??null,
+          modelTokens:usage?.totalTokens??null,note:note.value.trim(),rows:rows.map((row,index)=>({
+            excerpt:row.excerpt,status:row.status,section:row.section||'work',
+            unitIds:[...new Set((row.links||[]).map(link=>link.unitId).filter(Boolean))],review:ratings[index]||null,
+          }))};
+        const url=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}));
+        const link=document.createElement('a');link.href=url;link.download='waiting-jd-review-'+new Date().toISOString().slice(0,10)+'.json';
+        document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+      });
+      persist();body.append(noteLabel,status,download);review.append(title,body);host.append(review);
+    }
     function jdRenderAI(result){
       const host=$('jd-results');host.replaceChildren();
       const modelCalls=result.usage?.modelCalls;
@@ -845,6 +902,7 @@
         card.append(applyElement('p','本人证据／待补：'+(row.personalEvidence||row.personalGap||'请补充本人实际做过的任务、取舍和结果。'),'jd-gap'));
         host.append(card);
       }
+      jdAppendReview(host,rows,'live_agent',$('jd-input').value.trim(),result.usage);
     }
     async function jdShowSavedDemo(){
       const status=$('jd-status'),host=$('jd-results');status.textContent='正在载入已保存的真实试跑结果…';
@@ -885,6 +943,7 @@
           }
           host.append(card);
         }
+        jdAppendReview(host,demo.cards,'saved_real_agent_run',demo.jd,{modelCalls:demo.modelCalls,totalTokens:demo.reportedTokens});
         const comparison=document.createElement('details'),comparisonTitle=document.createElement('summary'),comparisonBody=document.createElement('div');
         comparison.className='jd-question';comparisonTitle.textContent='同一份 JD：看普通规则会给出什么（零模型调用）';
         comparisonBody.className='jd-question-body';
