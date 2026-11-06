@@ -242,7 +242,7 @@
       const label=document.createElement('label');label.className='career-field';label.htmlFor='jd-pilot-code';label.textContent='内测试用码（仅保存在当前标签）';
       jdInviteInput=document.createElement('input');jdInviteInput.id='jd-pilot-code';jdInviteInput.className='jd-input';jdInviteInput.type='password';jdInviteInput.autocomplete='off';jdInviteInput.spellcheck=false;jdInviteInput.style.minHeight='43px';jdInviteInput.placeholder='先输入试用码，再点分析';
       document.querySelector('#use-career-view .jd-actions').before(label,jdInviteInput);
-      document.querySelector('#use-career-view > .connection-note').textContent='粘贴新岗位后，实时分析会把 JD 发送到私有 AI 服务，从已核对的播客观点中寻找思考线索；找不到的要求会保留为缺口，节目观点不能证明个人经历。';
+      document.querySelector('#use-career-view > .connection-note').textContent='贴入岗位要求，AI 会从已核对的播客中找可回听的思考线索；找不到的要求会留空。JD 会发送到私有 AI 服务，结果不能证明个人经历。';
     }
     async function aiCall(path,data){
       if(!aiReady)throw Error('AI 服务尚未开放');
@@ -963,7 +963,7 @@
       const value=$('jd-input').value.trim(),status=$('jd-status'),button=$('jd-ai-search');
       if(!aiJDReady){
         try{if(value)localStorage.setItem('waiting-career-jd-v1',value)}catch(error){}
-        location.assign('https://xxiaoqqq.github.io/waiting-mvp/pilot.html?ai=trial');
+        location.assign('https://xxiaoqqq.github.io/waiting-mvp/pilot.html?ai=trial&view=career');
         return;
       }
       if(jdLooksLikeLink(value)){status.textContent='这里需要岗位职责正文，不能直接分析岗位网址。请打开链接复制职位描述，再粘贴到上方。';$('jd-input').focus();return}
@@ -1197,10 +1197,10 @@
     window.addEventListener('pagehide',()=>rememberPlayback());
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('thought-editor').hidden)closeThoughtEditor();else if(!$('thought-list').hidden)closeThoughtList();else if(!$('concept').hidden)hideConcept();else if(!$('episode-library').hidden)hideEpisodeLibrary();else if(!$('timeline').hidden)hideTimeline()}});
     applyViewMode();updateThoughtCount();setupVoice();
-    const initialParams=new URLSearchParams(location.search),initialJDDemo=initialParams.get('demo')==='jd';
+    const initialParams=new URLSearchParams(location.search),initialJDDemo=initialParams.get('demo')==='jd',initialJDCareer=initialParams.get('view')==='career'||aiJDReady;
     let initialSourceReturn=false;
     try{const back=JSON.parse(sessionStorage.getItem('waiting-source-return-v1')||'null');initialSourceReturn=!!back&&back.episodeId===initialParams.get('episode')&&Date.now()-back.createdAt<600000}catch(error){}
-    if(initialJDDemo&&!initialSourceReturn){showTab('thoughts');showUseView('career')}
+    if((initialJDDemo||initialJDCareer)&&!initialSourceReturn){showTab('thoughts');showUseView('career')}
     else if(aiPreview)showTab('knowledge');
     loadEpisode().then(()=>{
       if(!initialJDDemo||!episodeList.length)return;
