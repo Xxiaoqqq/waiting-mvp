@@ -226,12 +226,13 @@
     }
     const $=id=>document.getElementById(id),audio=$('audio'),box=$('transcript');
     const aiMode=new URLSearchParams(location.search).get('ai');
+    const jdTrialOnly=new URLSearchParams(location.search).get('scope')==='jd';
     const aiPilot=aiMode==='trial'&&location.hostname==='xxiaoqqq.github.io';
     const aiPreview=aiMode==='preview'&&location.protocol==='file:';
     const aiConfig=window.WAITING_AI_CONFIG||(aiPilot?{baseUrl:'https://cloud-1-d8gaulhxi903326e8-1500924923.ap-shanghai.app.tcloudbase.com/waiting-ai',features:{followup:true,jd:true}}:aiPreview?{baseUrl:'preview:',features:{followup:true}}:null);
     const aiBase=typeof aiConfig?.baseUrl==='string'?aiConfig.baseUrl.replace(/\/$/,''):'';
     const aiReady=Boolean(aiPreview||aiBase&&(/^https:\/\//.test(aiBase)||(/^http:\/\/127\.0\.0\.1:\d+$/.test(aiBase)&&['file:','http:'].includes(location.protocol))));
-    const aiFollowupReady=aiReady&&aiConfig?.features?.followup===true;
+    const aiFollowupReady=aiReady&&aiConfig?.features?.followup===true&&!jdTrialOnly;
     const aiPracticeReady=aiReady&&aiConfig?.features?.practice===true;
     const aiJDReady=aiReady&&aiConfig?.features?.jd===true;
     const jdLooksLikeLink=value=>/^https?:\/\/\S+$/i.test(value.trim());
@@ -239,10 +240,17 @@
     if(aiJDReady){
       $('jd-ai-search').textContent='分析我粘贴的岗位';
       $('jd-status').textContent='实时分析需要有效内测码和可用试用次数；每次运行会调用模型。';
-      const label=document.createElement('label');label.className='career-field';label.htmlFor='jd-pilot-code';label.textContent='内测试用码（仅保存在当前标签）';
+      const label=document.createElement('label');label.className='career-field';label.htmlFor='jd-pilot-code';label.textContent='试用码（试用链接可自动填写）';
       jdInviteInput=document.createElement('input');jdInviteInput.id='jd-pilot-code';jdInviteInput.className='jd-input';jdInviteInput.type='password';jdInviteInput.autocomplete='off';jdInviteInput.spellcheck=false;jdInviteInput.style.minHeight='43px';jdInviteInput.placeholder='先输入试用码，再点分析';
       document.querySelector('#use-career-view .jd-actions').before(label,jdInviteInput);
       document.querySelector('#use-career-view > .connection-note').textContent='贴入岗位要求，AI 会从已核对的播客中找可回听的思考线索；找不到的要求会留空。JD 会发送到私有 AI 服务，结果不能证明个人经历。';
+      const linkedCode=new URLSearchParams(location.hash.slice(1)).get('trial');
+      if(linkedCode&&/^[A-Za-z0-9_-]{20,200}$/.test(linkedCode)){
+        jdInviteInput.value=linkedCode;
+        jdInviteInput.placeholder='试用资格已自动填写';
+        $('jd-status').textContent='试用资格已自动填好。粘贴岗位职责后点「分析我粘贴的岗位」；每次运行最多调用一次模型。';
+        try{sessionStorage.setItem('waiting-ai-invite-code',linkedCode);history.replaceState(null,'',location.pathname+location.search)}catch(error){}
+      }
     }
     async function aiCall(path,data){
       if(!aiReady)throw Error('AI 服务尚未开放');
@@ -1164,11 +1172,11 @@
     $('jd-demo').addEventListener('click',jdShowSavedDemo);
     $('jd-input').addEventListener('input',()=>{
       $('jd-results').replaceChildren();
-      $('jd-status').textContent=jdLooksLikeLink($('jd-input').value)?'这是岗位网址；请复制岗位职责正文后再粘贴。':aiJDReady?'岗位已输入。填入有效内测码后，点「分析我粘贴的岗位」运行实时分析。':location.protocol==='file:'?'这是本地文件；前往在线试用后需重新粘贴岗位，且需要有效内测码。':'岗位已输入。点「前往在线试用」进入实时分析，需有效内测码。';
+      $('jd-status').textContent=jdLooksLikeLink($('jd-input').value)?'这是岗位网址；请复制岗位职责正文后再粘贴。':aiJDReady?jdInviteInput?.value.trim()?'岗位已输入，试用资格已就绪。点「分析我粘贴的岗位」运行实时分析。':'岗位已输入。填入有效试用码后，点「分析我粘贴的岗位」运行实时分析。':location.protocol==='file:'?'这是本地文件；前往在线试用后需重新粘贴岗位，且需要有效内测码。':'岗位已输入。点「前往在线试用」进入实时分析，需有效内测码。';
       try{sessionStorage.removeItem('waiting-career-view-v1');sessionStorage.removeItem('waiting-career-ai-jd-v2');sessionStorage.removeItem('waiting-career-ai-result-v2')}catch(error){}
     });
     try{$('jd-input').value=localStorage.getItem('waiting-career-jd-v1')||''}catch(error){}
-    if($('jd-input').value.trim())$('jd-status').textContent=aiJDReady?'已恢复上次粘贴的岗位；填入有效内测码后可运行实时分析。':location.protocol==='file:'?'已恢复上次粘贴的岗位；前往在线试用后需重新粘贴。':'已恢复上次粘贴的岗位；点「前往在线试用」进入实时分析。';
+    if($('jd-input').value.trim())$('jd-status').textContent=aiJDReady?jdInviteInput?.value.trim()?'已恢复上次粘贴的岗位，试用资格已就绪；点「分析我粘贴的岗位」即可运行。':'已恢复上次粘贴的岗位；填入有效试用码后可运行实时分析。':location.protocol==='file:'?'已恢复上次粘贴的岗位；前往在线试用后需重新粘贴。':'已恢复上次粘贴的岗位；点「前往在线试用」进入实时分析。';
     $('return-practice').addEventListener('click',()=>{const target=practiceReturn;if(!target)return;try{sessionStorage.removeItem('waiting-source-return-v1')}catch(error){}if(target.tab==='knowledge'){$('knowledge-search').value=target.knowledge?.query||'';showTab('knowledge');for(const id of target.knowledge?.openIds||[]){const card=[...document.querySelectorAll('#knowledge-question-body .knowledge-card')].find(item=>item.dataset.questionId===id);if(card)card.open=true}$('knowledge-concept-section').open=!!target.knowledge?.conceptSectionOpen;for(const id of target.knowledge?.conceptIds||[]){const card=[...document.querySelectorAll('#knowledge-concept-body .knowledge-concept-card')].find(item=>item.dataset.conceptId===id);if(card)card.open=true}requestAnimationFrame(()=>$('knowledge-panel').scrollTop=target.knowledge?.scrollTop||target.scrollTop);$('knowledge-search').focus()}else{showUseView(target.view);showTab('thoughts');if(target.view==='career'&&!$('jd-results').children.length){let mode='',previous=null,sameJD=false;try{mode=sessionStorage.getItem('waiting-career-view-v1')||'';if(mode==='agent-result'){previous=JSON.parse(sessionStorage.getItem('waiting-career-ai-result-v2')||'null');sameJD=sessionStorage.getItem('waiting-career-ai-jd-v2')===$('jd-input').value.trim()}}catch(error){}if(mode==='saved-demo')jdShowSavedDemo();else if(mode==='agent-result'&&sameJD&&previous?.status==='complete'&&Array.isArray(previous.tasks)){jdRenderAI(previous);$('jd-status').textContent='已返回刚才的私有 Agent 结果。'}else if($('jd-input').value.trim())jdSearch()}requestAnimationFrame(()=>$('thought-tab-panel').scrollTop=target.scrollTop);$('use-'+target.view).focus()}});
     $('return-current').addEventListener('click',()=>{state.following=true;updateFollow();if(state.aligned){if(state.currentReviewTurn)followTurn(state.currentReviewTurn,true);else if(state.activeTurn<0)box.scrollTo({top:0,behavior:'auto'});else followActiveTurn(true)}else followChapter(true)});for(const event of ['wheel','touchmove'])box.addEventListener(event,()=>{state.following=false;updateFollow()},{passive:true});box.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','PageUp','PageDown','Home','End'].includes(e.key)){state.following=false;updateFollow()}});
     $('play').addEventListener('click',async()=>{if(audio.paused){try{await audio.play()}catch(error){$('audio-state').textContent='音频未能播放，请再点一次或打开节目原页'}}else audio.pause()});$('rewind').addEventListener('click',()=>{audio.currentTime=Math.max(0,audio.currentTime-15)});$('forward').addEventListener('click',()=>{audio.currentTime=Math.min(audio.duration||episode.duration,audio.currentTime+15)});$('speed').addEventListener('click',()=>{const speeds=[1,1.5,2],next=speeds[(speeds.indexOf(audio.playbackRate)+1)%speeds.length];audio.playbackRate=next;$('speed').textContent=next+'×';$('speed').setAttribute('aria-label','播放速度 '+next+' 倍');rememberPlayback()});$('progress').addEventListener('input',e=>{audio.currentTime=Number(e.target.value);state.following=true;updateFollow();renderChapter(true);rememberPlayback()});
